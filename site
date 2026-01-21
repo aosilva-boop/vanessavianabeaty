@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SG Segurança Eletrônica - Especialistas em motores para portões, portas de rolo e segurança em Toledo-PR.">
+    <title>SG Segurança Eletrônica | Toledo-PR</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIÁVEIS DE CORES E RESET --- */
+        :root {
+            --primary-navy: #0a192f; /* Azul Marinho (Confiança) */
+            --accent-red: #d32f2f;   /* Vermelho (Urgência) */
+            --accent-orange: #ff5722; /* Laranja (Ação secundária) */
+            --text-dark: #333333;
+            --text-light: #f4f6f8;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+        ul { list-style: none; }
+
+        /* --- HEADER FIXO --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent-red); }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--primary-navy);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover { color: var(--accent-red); }
+
+        .btn-header {
+            background-color: var(--accent-red);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .btn-header:hover {
+            background-color: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        /* Menu Mobile Toggle */
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.7)), url('https://images.unsplash.com/photo-1558002038-109177381793?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 60px; /* Compensa o header fixo */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: #25D366; /* WhatsApp Green */
+            color: var(--white);
+        }
+
+        .btn-primary:hover { background-color: #1ebc57; transform: scale(1.05); }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--primary-navy);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--white);
+        }
+
+        /* --- SEÇÃO SERVIÇOS --- */
+        #servicos {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-navy);
+            margin-bottom: 10px;
+        }
+
+        .section-title .line {
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-red);
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-bottom: 4px solid transparent;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--accent-red);
+        }
+
+        .icon-box {
+            font-size: 3rem;
+            color: var(--primary-navy);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-navy);
+        }
+
+        /* --- DIFERENCIAIS --- */
+        #diferenciais {
+            padding: 80px 0;
+            background-color: var(--primary-navy);
+            color: var(--white);
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .diff-item i {
+            font-size: 2.5rem;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+        }
+
+        .diff-item h3 { margin-bottom: 10px; }
+        .diff-item p { font-size: 0.9rem; opacity: 0.9; }
+
+        /* --- LOCALIZAÇÃO --- */
+        #localizacao {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .loc-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .loc-info, .loc-map {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .loc-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-navy);
+            margin-bottom: 20px;
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-list i {
+            color: var(--accent-red);
+            width: 25px;
+        }
+
+        .loc-map iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        /* --- CTA FINAL --- */
+        #cta-final {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--accent-red), #b71c1c);
+            text-align: center;
+            color: var(--white);
+        }
+
+        #cta-final h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        #cta-final .btn-cta {
+            background-color: var(--white);
+            color: var(--accent-red);
+            margin-top: 20px;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        #cta-final .btn-cta:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: scale(1.05);
+        }
+
+        /* --- RODAPÉ --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #ccc; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--accent-red); }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* --- BOTÃO FLUTUANTE WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 2000;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #1ebc57;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; color: var(--primary-navy); }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.active { display: flex; }
+
+            .hero-content h1 { font-size: 2rem; }
+            
+            .btn-header { display: none; } /* Esconde o botão do header no mobile para economizar espaço */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">SG <span>Segurança</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="nav-list">
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#diferenciais">Diferenciais</a></li>
+                    <li><a href="#localizacao">Localização</a></li>
+                    <li><a href="tel:+554520355060" class="btn-header">Emergência / Orçamento</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Segurança e Agilidade para sua Casa ou Empresa em Toledo</h1>
+            <p>Especialistas em instalação e manutenção de motores para portões e portas de rolo automáticas. Seu imóvel protegido com tecnologia de ponta.</p>
+            <div class="btn-group">
+                <a href="https://wa.me/5545999506705?text=Olá,%20gostaria%20de%20um%20orçamento." class="btn btn-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Solicitar Orçamento
+                </a>
+                <a href="tel:+554520355060" class="btn btn-secondary">
+                    <i class="fas fa-phone-alt"></i> Ligar (45) 2035-5060
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos">
+        <div class="section-title">
+            <h2>Soluções Especializadas</h2>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-cogs"></i></div>
+                <h3>Motores de Portão</h3>
+                <p>Instalação rápida e manutenção preventiva ou corretiva. Trabalhamos com as melhores marcas (PPA, Rossi, Garen) para garantir que você nunca fique na mão.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-warehouse"></i></div>
+                <h3>Portas de Rolo</h3>
+                <p>Soluções robustas para comércio e indústria. Automação completa com foco em durabilidade e segurança no fechamento do seu negócio.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+                <h3>Segurança Eletrônica</h3>
+                <p>Manutenção e instalação de sistemas integrados para garantir que sua proteção esteja ativa e monitorada 24h por dia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="diferenciais">
+        <div class="section-title">
+            <h2 style="color: white;">Por que a SG Segurança?</h2>
+            <div class="line" style="background-color: white;"></div>
+        </div>
+        <div class="diff-grid">
+            <div class="diff-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Atendimento Local Rápido</h3>
+                <p>Estamos na Av. Maripá. Chegamos rápido onde você precisar em Toledo.</p>
+            </div>
+            <div class="diff-item">
+                <i class="fas fa-user-cog"></i>
+                <h3>Técnicos Especializados</h3>
+                <p>Mão de obra qualificada que entende de mecânica e eletrônica.</p>
+            </div>
+            <div class="diff-item">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h3>Garantia de Serviço</h3>
+                <p>Segurança não aceita erros. Entregamos nota fiscal e garantia em todos os serviços.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="localizacao">
+        <div class="container">
+            <div class="section-title">
+                <h2>Visite nossa sede em Toledo</h2>
+                <div class="line"></div>
+            </div>
+            <div class="loc-container">
+                <div class="loc-info">
+                    <h3>Entre em Contato</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fab fa-whatsapp"></i> 
+                            <span>(45) 99950-6705</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i> 
+                            <span>(45) 2035-5060</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-pin"></i> 
+                            <span>Av. Maripá, 2408 - Vila Brasil<br>Toledo - PR, 85902-120</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Seg - Sex: 08h às 18h<br>Sáb: 08h às 12h</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="loc-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.665787688463!2d-53.746688!3d-24.717088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQzJzAxLjUiUyA1M8KwNDQnNDguMSJX!5e0!3m2!1spt-BR!2sbr!4v1625680000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta-final">
+        <h2>Não deixe sua segurança para depois.</h2>
+        <p>Seja para uma instalação nova ou um reparo urgente, a SG Segurança Eletrônica é sua parceira.</p>
+        <a href="https://wa.me/5545999506705?text=Preciso%20de%20ajuda%20com%20meu%20portão." class="btn-cta" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chamar no WhatsApp Agora
+        </a>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>SG Segurança Eletrônica</h4>
+                <p>Líder em automação e segurança em Toledo-PR. Compromisso com a proteção do seu patrimônio.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Serviços</h4>
+                <ul>
+                    <li><a href="#">Motores de Portão</a></li>
+                    <li><a href="#">Portas de Rolo</a></li>
+                    <li><a href="#">Cerca Elétrica</a></li>
+                    <li><a href="#">Manutenção Geral</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Onde Estamos</h4>
+                <p>Avenida Maripá, 2408<br>Vila Brasil<br>CEP: 85902-120 | Toledo - PR</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 SG Segurança Eletrônica. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5545999506705" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Menu Mobile Toggle
+            const menuToggle = document.getElementById('mobile-menu');
+            const navList = document.getElementById('nav-list');
+
+            menuToggle.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+
+            // 2. Fechar menu ao clicar em um link (para UX mobile)
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navList.classList.remove('active');
+                });
+            });
+
+            // 3. Efeito de Scroll no Header (transparência)
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.padding = '10px 0';
+                    header.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.padding = '15px 0';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
